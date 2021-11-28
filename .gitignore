@@ -1,3 +1,23 @@
+.libs/
+Makefile
+api/version.h
+autom4te.cache/                                                                                                                                    │Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+build-f00f/                                                                                                                                        │permitted by applicable law.
+config.log                                                                                                                                         │Last login: Sun Nov 28 13:09:34 2021 from 10.10.13.175
+config.status                                                                                                                                      │solala@f00f ~$ 
+info/.deps/                                                                                                                                        ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+info/.dirstamp                                                                                                                                     │-rw-rw-r-- 1 solala  206 Nov 21 12:00  github-recovery-codes.txt
+info/lfm_preprocessor.o                                                                                                                            │-rw-rw-r-- 1 solala 1.5M Nov 24 13:35  grappolo.tar.gz
+info/lfm_solve.o                                                                                                                                   │-rw-rw-r-- 1 solala 1.3M Nov 25 12:03  hpc-fastmesh.zip
+lfm_preprocessor                                                                                                                                   │-rw-rw-r-- 1 solala  31K Nov 28 10:39  mesh_preprocessor.cpp
+lfm_solve                                                                                                                                          │-rw-rw-r-- 1 solala 1.9K Nov 18 09:51  my_bashprofile
+libfastmesh.la                                                                                                                                     │-rw-rw-r-- 1 solala 3.1K Nov 18 09:51  my_vimrc
+libtool                                                                                                                                            │-rw-rw-r-- 1 solala  17K Nov 21 15:38  profile-348.ovpn
+configure
+default.profraw
+src/.deps/                                                                                                                                         │-rw-rw-r-- 1 solala  17K Nov 21 15:51  profile-349.ovpn
+src/.dirstamp                                                                                                                                      │-rw-rw-r-- 1 solala  980 Nov 24 13:17  solve.log.err2
+src/.libs/
 src/*o
 src/*lo
 testCases/cylinder_valerio/mesh_files/

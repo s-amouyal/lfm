@@ -168,7 +168,7 @@ class MPI_env {
 		// Two-sided
 		template <typename PRECISION, unsigned DIM_CNT, unsigned FACE_CNT>
 		void isendrecv(          fm_vector<CFDv0_cell<PRECISION, DIM_CNT, FACE_CNT>>  &cells_hpath,
-                       fm_vector<fm_vector<CFDv0_cell<PRECISION, DIM_CNT, FACE_CNT>>> &ghost_hpath );
+					   fm_vector<fm_vector<CFDv0_cell<PRECISION, DIM_CNT, FACE_CNT>>> &ghost_hpath );
 
 		// Neighborhood collective
 		template <typename PRECISION, unsigned DIM_CNT, unsigned FACE_CNT>
@@ -188,7 +188,7 @@ class MPI_env {
 		std::vector<int> node_local_ranks;
 
 		// Node communicator
-		struct t_mpi_comm node_comm;
+		class t_mpi_comm node_comm;
 	private:
 		int  nProcs;
 		int  myrank;
