@@ -668,7 +668,7 @@ void Mesh<PRECISION, DIM_CNT> :: calculate_v_neigh( int                    ipart
 		int send_rank = mesh->mpi_neighbors[ineigh];
 		int send_tag  = thousand*(mpi_env.rank()+1) + (send_rank+1);
 		int send_size = send_cells_coord[ineigh].size();
-		MPI_Send( &send_cells_coord[ineigh][0], send_size, type_center, send_rank, send_tag, MPI_COMM_WORLD );
+		MPI_Isend( &send_cells_coord[ineigh][0], send_size, type_center, send_rank, send_tag, MPI_COMM_WORLD, &send_req[ineigh] );
 	}
 
 	std::vector<std::vector<struct t_cell_center>> recv_cells_coord( mesh->mpi_neighbors.size() );
@@ -679,8 +679,11 @@ void Mesh<PRECISION, DIM_CNT> :: calculate_v_neigh( int                    ipart
 		int recv_rank = mesh->mpi_neighbors[ineigh];
 		int recv_tag  = mpi_env.rank()+1 + thousand*(recv_rank+1);
 		int recv_size = recv_cells_coord[ineigh].size();
-		MPI_Recv( &recv_cells_coord[ineigh][0], recv_size, type_center, recv_rank, recv_tag, MPI_COMM_WORLD, MPI_STATUS_IGNORE );
+		MPI_Irecv( &recv_cells_coord[ineigh][0], recv_size, type_center, recv_rank, recv_tag, MPI_COMM_WORLD, &recv_req[ineigh] );
 	}
+
+	MPI_Waitall( (int) mesh->mpi_neighbors.size(), &send_req[0], MPI_STATUS_IGNORE );
+	MPI_Waitall( (int) mesh->mpi_neighbors.size(), &recv_req[0], MPI_STATUS_IGNORE );
 
 	// Get neigh
 	std::vector<std::map<int,int>> cell_global2local( mesh->mpi_neighbors.size() );

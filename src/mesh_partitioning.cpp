@@ -1210,7 +1210,7 @@ std::vector<gmsh_mesh> init_submesh_partitions( gmsh_mesh *gmsh, gmsh_mesh *gmsh
 				gcell = new2old[ipart][icell];
 				gface = gmsh->cell2face[gcell][iface];
 
-				if( gface > unregistered_faces[ipart].size() || gface < 0 ){
+				if( gface > (int) unregistered_faces[ipart].size() || gface < 0 ){
 					cout << "Error with cell2face on rank " << myrank << ".";
 					cout << "Terminating simulation prematurely." << endl;
 					MPI_Abort( MPI_COMM_WORLD, 931 );
