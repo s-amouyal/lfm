@@ -1,0 +1,40 @@
+#
+# Copyright (C) Huawei Technologies Co., Ltd. 2020. ALL RIGHTS RESERVED.
+#
+# See file LICENSE for terms.
+#
+LDFLAGS                      = -lm
+CXXFLAGS                     = -O3 -g -Wall
+
+lib_LTLIBRARIES              = libfastmesh.la
+libfastmesh_la_LDFLAGS       = -ldl -version-info $(SOVERSION)
+libfastmesh_la_SOURCES       = src/serial.cc src/mesh_reader.cpp src/hpath.cpp src/mesh_writer.cpp \
+							   src/solver_jacobi.cpp src/original_jacobi.cpp
+libfastmesh_ladir            = $(includedir)
+dist_libfastmesh_la_HEADERS  = api/fastmesh.h api/mesh_reader.h api/hpath.h api/mesh_writer.h		\
+							   api/solver_jacobi.h api/original_jacobi.h api/timing.h
+
+if WITH_MPI
+libfastmesh_la_SOURCES      += src/mpi.cc
+dist_libfastmesh_la_HEADERS += api/fastmesh_mpi.h
+endif
+
+bin_PROGRAMS                 = lfm_preprocessor lfm_solver
+
+fastmesh_preprocessor_LDADD   = libfastmesh.la
+
+# Only the cpp files that each executable need
+fastmesh_preprocessor_SOURCES = src/preprocessor.cc \
+								info/triangles.cc \
+								info/rectangles.cc \
+								info/tetrahedra.cc \
+								info/boxes.cc \
+								info/mesh.cc
+
+fastmesh_solver_LDADD         = libfastmesh.la
+fastmesh_solver_SOURCES       = info/main.cc \
+								info/triangles.cc \
+								info/rectangles.cc \
+								info/tetrahedra.cc \
+								info/boxes.cc \
+								info/mesh.cc
